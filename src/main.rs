@@ -1,13 +1,20 @@
-const MATH_PI: f64 = 3.14159265359;
+use std::time::{SystemTime, UNIX_EPOCH};
 
-/*
-    Les constantes
-*/
+fn nombre_aleatoire() -> u32 {
+    let since_epoch = SystemTime::now().duration_since(UNIX_EPOCH)
+        .expect("Le temps a reculé");
+    let nanos = since_epoch.as_nanos();
+    (nanos % 21) as u32
+}
+
 fn main() {
-    // ignore le fait que cette variable soit non utilisée.
-    let _a = 1;
+    let aleatoire = nombre_aleatoire();
 
-    let ma_variable = 1;
-
-    println!("{ma_variable}");
+    if aleatoire >= 18 {
+        println!("Réussite critique");
+    }else if aleatoire <= 2 {
+        println!("Echec critique");
+    } else {
+        println!("Coup normal");
+    }
 }
