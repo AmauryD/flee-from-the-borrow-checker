@@ -6,7 +6,17 @@ use super::{map::{BoardSize, Map}, tile::TileType};
 pub fn demo_map() -> Map {
     let mut tiles = vec![];
 
-    for _ in 0..100 {
+    for i in 0..100 {
+        if i % 30 == 0 {
+            tiles.push(TileType::WATER);
+            continue;
+        }
+
+        if i % 50 == 0 {
+            tiles.push(TileType::MOUNTAIN);
+            continue;
+        } 
+
         tiles.push(TileType::GRASS);
     }
 

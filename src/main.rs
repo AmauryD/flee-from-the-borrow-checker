@@ -1,13 +1,14 @@
 use entities::player;
 use maps::demo::demo_map;
+use rendering::screen::Screen;
 
 mod game;
 mod position;
-mod rendering;
-pub mod utils;
-pub mod user_input;
 mod maps;
 mod entities;
+pub mod utils;
+pub mod user_input;
+pub mod rendering;
 
 fn main() {
     let player: player::Player = player::Player {
@@ -18,7 +19,8 @@ fn main() {
 
     let mut game = game::Game {
         map: demo_map(),
-        player
+        player,
+        screen: Screen::new(40, 10)
     };
 
     game.game_loop();

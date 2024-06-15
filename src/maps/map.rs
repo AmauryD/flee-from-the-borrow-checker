@@ -6,7 +6,7 @@ pub struct BoardSize(pub u8, pub u8);
 pub struct Map {
     tiles: Vec<TileType>,
     board_size: BoardSize,
-    level: u8,
+    pub level: u8,
     entities: Vec<Box<dyn Entity>>,
 }
 
@@ -30,11 +30,6 @@ impl Map {
 
     pub fn get_tile(&self, x: u8, y: u8) -> &TileType {
         &self.tiles[(y * self.board_size.0 + x) as usize]
-    }
-
-
-    pub fn size(&self) -> u8 {
-        self.board_size.0 * self.board_size.1
     }
 
     pub fn size_x(&self) -> u8 {

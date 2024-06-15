@@ -1,6 +1,9 @@
 use crate::position::Position;
 
-pub trait Entity {
+pub trait Draw {
+    fn draw(&self) -> char;
+}
+
+pub trait Entity: Draw {
     fn position(&self) -> &Position;
-    fn draw(&self) -> String;
 }

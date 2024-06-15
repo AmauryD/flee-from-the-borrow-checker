@@ -1,6 +1,6 @@
 use crate::{maps::map::Map, position::Position};
 
-use super::entity::Entity;
+use super::entity::{Draw, Entity};
 
 pub enum Direction {
     Up,
@@ -16,12 +16,16 @@ pub struct Player {
     pub position: Position,
 }
 
-impl Entity for Player {
-    fn draw(&self) -> String {
-        "🧍".to_string()
+impl Draw for Player {
+    fn draw(&self) -> char {
+        '🧍'
     }
-    
-    // same lifetime than the struct
+}
+
+impl Entity for Player {
+    /**
+     * Player position on map
+     */
     fn position(&self) -> &Position {
         &self.position
     }

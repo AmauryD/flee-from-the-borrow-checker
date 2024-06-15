@@ -1,17 +1,19 @@
 use crate::position::Position;
-use super::entity::Entity;
+use super::entity::{Draw, Entity};
 
 pub struct Crab {
     position: Position,
 }
 
+impl Draw for Crab {
+    fn draw(&self) -> char {
+        '🦀'
+    }
+}
+
 impl Entity for Crab {
     fn position(&self) -> &Position {
         &self.position
-    }
-
-    fn draw(&self) -> String {
-        '🦀'.to_string()
     }
 }  
 
