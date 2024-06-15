@@ -7,18 +7,16 @@ pub fn demo_map() -> Map {
     let mut tiles = vec![];
 
     for i in 0..100 {
-        if i % 30 == 0 {
-            tiles.push(TileType::WATER);
-            continue;
-        }
-
-        if i % 50 == 0 {
-            tiles.push(TileType::MOUNTAIN);
-            continue;
-        } 
-
         tiles.push(TileType::GRASS);
     }
+
+    tiles[42] = TileType::WATER;
+    tiles[43] = TileType::WATER;
+    tiles[32] = TileType::WATER;
+    tiles[33] = TileType::WATER;
+
+    tiles[55] = TileType::MOUNTAIN;
+    tiles[56] = TileType::MOUNTAIN;
 
     Map::new(tiles, BoardSize(10, 10), 1, vec![
         Box::new(

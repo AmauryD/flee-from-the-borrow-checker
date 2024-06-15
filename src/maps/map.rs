@@ -24,6 +24,16 @@ impl Map {
         }
     }
 
+    pub fn get_entity_at(&self, x: u8, y: u8) -> Option<&Box<dyn Entity>> {
+        for entity in self.entities.iter() {
+            if entity.position().x == x && entity.position().y == y {
+                return Some(entity);
+            }
+        }
+
+        None
+    }
+
     pub fn get_entities(&self) -> &Vec<Box<dyn Entity>> {
         &self.entities
     }

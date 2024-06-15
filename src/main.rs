@@ -1,4 +1,4 @@
-use entities::player;
+use entities::player::{self, Player};
 use maps::demo::demo_map;
 use rendering::screen::Screen;
 
@@ -9,13 +9,10 @@ mod entities;
 pub mod utils;
 pub mod user_input;
 pub mod rendering;
+mod inventory;
 
 fn main() {
-    let player: player::Player = player::Player {
-        position: position::Position { x: 1, y: 1 },
-        name: String::from("Player 1"),
-        score: 0,
-    };
+    let player = Player::new("Young Rustacean".to_owned());
 
     let mut game = game::Game {
         map: demo_map(),

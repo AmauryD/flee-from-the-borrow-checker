@@ -13,7 +13,12 @@ impl Game {
             self.map.draw_map(&mut self.screen, &self.player).unwrap();
             render_menu(self, self.map.size_x(), 0).unwrap();
             self.screen.draw_screen().unwrap();
+
             self.handle_input();
+
+            if let Some(entity) = self.map.get_entity_at(self.player.position.x, self.player.position.y) {
+                
+            }
         }
     }
 }

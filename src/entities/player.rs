@@ -1,4 +1,4 @@
-use crate::{maps::map::Map, position::Position};
+use crate::{inventory::inventory::Inventory, maps::map::Map, position::Position};
 
 use super::entity::{Draw, Entity};
 
@@ -9,11 +9,12 @@ pub enum Direction {
     Right,
 }
 
-#[derive(Clone)]
 pub struct Player {
     pub name: String,
     pub score: u32,
     pub position: Position,
+    pub inventory: Inventory,
+    pub health: u8,
 }
 
 impl Draw for Player {
@@ -32,6 +33,16 @@ impl Entity for Player {
 }
 
 impl Player {
+    pub fn new(name: String) -> Player {
+        Player {
+            name,
+            score: 0,
+            position: Position::default(),
+            inventory: Inventory::new(),
+            health: 100
+        }
+    }
+
     pub fn mov(&mut self, direction: Direction, map: &Map) {
         match direction {
             Direction::Up => {
