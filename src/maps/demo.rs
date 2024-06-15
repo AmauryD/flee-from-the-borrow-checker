@@ -1,4 +1,4 @@
-use crate::{entities::crab::Crab, position::Position};
+use crate::{entities::{crab::Crab, entity::Entities, reference::Reference}, position::Position};
 
 use super::{map::{BoardSize, Map}, tile::TileType};
 
@@ -19,20 +19,14 @@ pub fn demo_map() -> Map {
     tiles[56] = TileType::MOUNTAIN;
 
     Map::new(tiles, BoardSize(10, 10), 1, vec![
-        Box::new(
-            Crab::new(
-                Position { x: 2, y: 2 },
-            )
-        ),
-        Box::new(
-            Crab::new(
-                Position { x: 3, y: 2 },
-            )
-        ),
-        Box::new(
-            Crab::new(
-                Position { x: 5, y: 3 },
-            )
-        )
+        Entities::Crab(Crab::new(
+            Position { x: 2, y: 2 },
+        )),
+        Entities::Crab(Crab::new(
+            Position { x: 3, y: 2 },
+        )),
+        Entities::Reference(Reference::new(
+            Position { x: 4, y: 2 }
+        ))
     ])
 }

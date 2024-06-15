@@ -1,7 +1,7 @@
-use super::item::Item;
+use super::item::{Item, Items};
 
 pub struct Inventory {
-    items: Vec<Box<dyn Item>>,
+    items: Vec<Items>,
 }
 
 impl Inventory {
@@ -11,11 +11,11 @@ impl Inventory {
         }
     }
 
-    pub fn items(&self) -> &Vec<Box<dyn Item>> {
+    pub fn items(&self) -> &Vec<Items> {
         &self.items
     }
 
-    pub fn add_item(&mut self, item: Box<dyn Item>) {
+    pub fn add_item(&mut self, item: Items) {
         self.items.push(item);
     }
 }

@@ -1,3 +1,3 @@
 pub(super) mod draw_map;
-pub(super) mod menu;
+pub(super) mod side_menu;
 pub mod screen;

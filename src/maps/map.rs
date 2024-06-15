@@ -1,4 +1,4 @@
-use crate::{entities::entity::Entity};
+use crate::entities::entity::{Entities, Entity};
 use super::tile::TileType;
 
 pub struct BoardSize(pub u8, pub u8);
@@ -7,11 +7,11 @@ pub struct Map {
     tiles: Vec<TileType>,
     board_size: BoardSize,
     pub level: u8,
-    entities: Vec<Box<dyn Entity>>,
+    entities: Vec<Entities>,
 }
 
 impl Map {
-    pub fn new(tiles: Vec<TileType>, board_size: BoardSize, level: u8, entities: Vec<Box<dyn Entity>>) -> Self {
+    pub fn new(tiles: Vec<TileType>, board_size: BoardSize, level: u8, entities: Vec<Entities>) -> Self {
         if board_size.0 * board_size.1 != tiles.len() as u8 {
             panic!("Invalid map size");
         }
@@ -24,9 +24,14 @@ impl Map {
         }
     }
 
-    pub fn get_entity_at(&self, x: u8, y: u8) -> Option<&Box<dyn Entity>> {
-        for entity in self.entities.iter() {
-            if entity.position().x == x && entity.position().y == y {
+    pub fn remove_entity_at(&mut self, index: usize) {
+        self.entities.remove(index);
+    }
+
+    pub fn get_entity_at(&self, x: u8, y: u8) -> Option<(usize,&Entities)> {
+        for entity in self.entities.iter().enumerate() {
+            let position = entity.1.position();
+            if position.x == x && position.y == y {
                 return Some(entity);
             }
         }
@@ -34,7 +39,7 @@ impl Map {
         None
     }
 
-    pub fn get_entities(&self) -> &Vec<Box<dyn Entity>> {
+    pub fn get_entities(&self) -> &Vec<Entities> {
         &self.entities
     }
 

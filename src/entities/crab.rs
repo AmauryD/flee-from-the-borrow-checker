@@ -1,6 +1,7 @@
 use crate::position::Position;
 use super::entity::{Draw, Entity};
 
+#[derive(PartialEq)]
 pub struct Crab {
     position: Position,
 }

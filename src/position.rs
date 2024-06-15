@@ -9,3 +9,9 @@ impl Default for Position {
         Self { x: 0, y: 0 }
     }
 }
+
+impl Position {
+    pub fn new(x: u8, y: u8) -> Self {
+        Self { x, y }
+    }
+}

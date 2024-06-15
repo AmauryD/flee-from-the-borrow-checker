@@ -17,3 +17,11 @@ impl Draw for TileType {
     }
 }
 
+impl TileType {
+    pub fn is_walkable(&self) -> bool {
+        match self {
+            TileType::GRASS => true,
+            _ => false,
+        }
+    }
+}
