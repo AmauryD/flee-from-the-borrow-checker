@@ -1,20 +1,26 @@
-use std::time::{SystemTime, UNIX_EPOCH};
+use entities::player;
+use maps::demo::demo_map;
 
-fn nombre_aleatoire() -> u32 {
-    let since_epoch = SystemTime::now().duration_since(UNIX_EPOCH)
-        .expect("Le temps a reculé");
-    let nanos = since_epoch.as_nanos();
-    (nanos % 21) as u32
-}
+mod game;
+mod position;
+mod rendering;
+pub mod utils;
+pub mod user_input;
+mod maps;
+mod entities;
 
 fn main() {
-    let aleatoire = nombre_aleatoire();
+    let player: player::Player = player::Player {
+        position: position::Position { x: 1, y: 1 },
+        name: String::from("Player 1"),
+        score: 0,
+    };
 
-    if aleatoire >= 18 {
-        println!("Réussite critique");
-    }else if aleatoire <= 2 {
-        println!("Echec critique");
-    } else {
-        println!("Coup normal");
-    }
+    let mut game = game::Game {
+        map: demo_map(),
+        player
+    };
+
+    game.game_loop();
 }
+
