@@ -1,4 +1,4 @@
-use super::item::{Item, Items};
+use super::item::Items;
 
 pub struct Inventory {
     items: Vec<Items>,

@@ -20,14 +20,25 @@ impl Screen {
         }
     }
 
+    pub fn center(&self) -> (u8, u8) {
+        (self.screen_size.0 / 2, self.screen_size.1 / 2)
+    }
+
+    pub fn write_centered_string(&mut self, str: String) {
+        let x = self.center().0 - (str.len() / 2) as u8;
+        let y: u8 = self.center().1;
+        self.set_string_at(x, y, str);
+    }
+
     // draw the map on the left, on the right the player stats
     pub fn set_string_at(&mut self,x:u8,y:u8,str: String) {
-        let index = self.get_index_in_vector(y, x);
+        let index: usize = self.get_index_in_vector(y, x);
 
         for (i, c) in str.chars().enumerate() {
             self.screen_chars[index + i] = c;
         }
     }
+    
 
     fn get_index_in_vector(&self, y: u8, x: u8) -> usize {
         (y as i16 * self.screen_size.0 as i16 + x as i16) as usize
@@ -55,7 +66,7 @@ impl Screen {
         self.screen_chars[index] = c;
     }
 
-    pub fn draw_screen(&mut self) -> Result<(), std::io::Error> {
+    pub fn draw(&mut self) -> Result<(), std::io::Error> {
         let mut stdout = stdout();
         let mut screen = String::new();
 

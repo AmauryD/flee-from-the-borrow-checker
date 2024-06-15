@@ -1,6 +1,6 @@
 use crate::position::Position;
 
-use super::{crab::Crab, player::Player, reference::Reference};
+use super::{crab::Crab, reference::Reference};
 
 pub trait Draw {
     fn draw(&self) -> char;

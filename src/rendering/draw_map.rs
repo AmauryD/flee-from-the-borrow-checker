@@ -1,4 +1,4 @@
-use crate::{entities::{entity::{Draw, Entities, Entity}, player::Player}, maps::map::Map};
+use crate::{entities::{entity::{Draw, Entity}, player::Player}, maps::map::Map};
 
 use super::screen::Screen;
 
